@@ -1,0 +1,6 @@
+{
+  "name": "Colinha Eleitoral",
+  "description": "Simulador de urna eletrônica e colinha eleitoral offline.",
+  "requestFramePermissions": ["camera"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Voto Fácil</string>
+    <string name="title_activity_main">Voto Fácil</string>
+    <string name="package_name">com.alncruz.votofacil</string>
+    <string name="custom_url_scheme">com.alncruz.votofacil</string>
+</resources>

@@ -1,0 +1,1 @@
+powershell -Command 'keytool -genkeypair -v -keystore keystore\my-release-key.jks -alias votofacil -keyalg RSA -keysize 2048 -validity 10000 -storepass VotoFacil2026! -keypass Dede87654321 -dname "CN=Alan Cruz, OU=Dev, O=MyApp, L=Sao Paulo, S=SP, C=BR"'
