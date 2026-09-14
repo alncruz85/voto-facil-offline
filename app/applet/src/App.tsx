@@ -24,10 +24,7 @@ import {
   FileText,
   AlertCircle,
   Vote,
-  UserCheck,
   RotateCcw,
-  Sparkles,
-  ChevronRight,
   ShieldCheck,
 } from "lucide-react";
 
@@ -44,7 +41,6 @@ export function App() {
   const [view, setView] = useState<ViewState>({ name: "listas" });
   const [erroGlobal, setErroGlobal] = useState<string | null>(null);
 
-  // Load listas synchronously
   useEffect(() => {
     const atualizar = () => {
       try {
@@ -628,7 +624,6 @@ function UrnaView({
   const etapaAtual = etapas[etapaAtualIndex];
   const digitosNecessarios = etapaAtual ? DIGITOS_POR_CARGO[etapaAtual.cargo] : 5;
 
-  // Find candidate matching entered digits
   const candidatoEncontrado = lista.candidatos.find(
     (c) => c.cargo === etapaAtual?.cargo && c.codigo === digitosDigitados
   );
@@ -659,7 +654,6 @@ function UrnaView({
       setDigitosDigitados("");
       return;
     }
-    // Voto em Branco
     registrarVoto({ tipo: "branco", codigo: "BRANCO" });
   };
 
@@ -712,7 +706,6 @@ function UrnaView({
       </div>
 
       {votoFinalizado ? (
-        /* TELA DE FIM / FIM DE VOTAÇÃO */
         <div className="bg-white rounded-3xl border border-slate-200 p-8 text-center shadow-lg animate-fade-in space-y-6">
           <div className="w-24 h-24 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center text-5xl mx-auto shadow-inner">
             🇧🇷
@@ -746,9 +739,7 @@ function UrnaView({
           </button>
         </div>
       ) : (
-        /* URNA ELETRÔNICA CORPO */
         <div className="bg-slate-100 rounded-3xl border-4 border-slate-300 p-6 shadow-2xl flex flex-col md:flex-row gap-6">
-          {/* Tela da Urna (Esquerda) */}
           <div className="flex-1 bg-white rounded-2xl border-2 border-slate-300 p-6 flex flex-col justify-between shadow-inner min-h-[380px]">
             <div>
               <div className="flex justify-between items-center border-b border-slate-200 pb-3 mb-4">
@@ -760,7 +751,6 @@ function UrnaView({
 
               <h2 className="text-2xl font-extrabold text-slate-900 mb-6">{etapaAtual?.rotulo}</h2>
 
-              {/* Dígitos do Voto */}
               <div className="space-y-3">
                 <p className="text-xs font-semibold text-slate-600 uppercase">Número:</p>
                 <div className="flex gap-2">
@@ -778,7 +768,6 @@ function UrnaView({
                 </div>
               </div>
 
-              {/* Informações do Candidato Encontrado */}
               <div className="mt-6 pt-4 border-t border-slate-100 min-h-[110px]">
                 {digitosDigitados.length === digitosNecessarios ? (
                   candidatoEncontrado ? (
@@ -804,14 +793,12 @@ function UrnaView({
             </div>
           </div>
 
-          {/* Teclado Numérico da Urna (Direita) */}
           <div className="w-full md:w-72 bg-slate-900 rounded-2xl p-5 flex flex-col justify-between shadow-xl border-2 border-slate-800">
             <div className="text-center mb-4">
               <div className="text-white font-extrabold tracking-widest text-sm mb-0.5">JUSTIÇA ELEITORAL</div>
               <div className="text-[10px] text-slate-400">URNA ELETRÔNICA SIMULADA</div>
             </div>
 
-            {/* Grid 1-9 */}
             <div className="grid grid-cols-3 gap-2 mb-3">
               {["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"].map((num) => (
                 <button
@@ -824,7 +811,6 @@ function UrnaView({
               ))}
             </div>
 
-            {/* Botões de Ação da Urna */}
             <div className="grid grid-cols-3 gap-2 pt-2 border-t border-slate-800">
               <button
                 onClick={handleBranco}
