@@ -9,7 +9,6 @@ jobs:
   build:
     name: Compilar APK de Teste
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout do código
         uses: actions/checkout@v4
@@ -28,10 +27,15 @@ jobs:
 
       - name: Configurar Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: "platforms;android-36 build-tools;36.0.0"
 
-      - name: Instalar SDK Platform 36 e Build Tools
+      - name: Pré-aceitar licenças do Android SDK
         run: |
-          sdkmanager "platforms;android-36" "build-tools;36.0.0"
+          mkdir -p $ANDROID_HOME/licenses
+          echo "24333f8a43b68921783f061bdd48f52c0429f4af" > $ANDROID_HOME/licenses/android-sdk-license
+          echo "d56f5187479451eabf01fb78af6dfcb139a648b0" >> $ANDROID_HOME/licenses/android-sdk-license
+          echo "84831b4009044f2a1501999e7b9202a0a28f8707" >> $ANDROID_HOME/licenses/android-sdk-preview-license
 
       - name: Instalar dependências npm
         run: npm install --legacy-peer-deps
@@ -41,9 +45,6 @@ jobs:
 
       - name: Copiar assets para o Android (Capacitor)
         run: npx cap copy android
-
-      - name: Aceitar licenças do Android SDK
-        run: yes | sdkmanager --licenses || true
 
       - name: Dar permissão de execução ao gradlew
         run: chmod +x android/gradlew
